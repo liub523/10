@@ -232,7 +232,6 @@ function initializePlumb() {
 
             // 使节点可拖动
             instance.draggable(node, {
-                grid: [20, 20],
                 drag: function(event) {
                     instance.revalidate(event.el);
                 }
