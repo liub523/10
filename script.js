@@ -83,7 +83,11 @@ function initializePlumb() {
             strokeWidth: 3,
             stroke: '#216477'
         },
-        maxConnections: -1
+        maxConnections: -1,
+        anchor: ['Right', {
+            orientation: [1, 0],
+            position: [1, 0.5]
+        }]
     };
 
     const targetEndpoint = {
@@ -99,7 +103,11 @@ function initializePlumb() {
         },
         maxConnections: -1,
         dropOptions: { hoverClass: 'hover', activeClass: 'active' },
-        isTarget: true
+        isTarget: true,
+        anchor: ['Left', {
+            orientation: [-1, 0],
+            position: [0, 0.5]
+        }]
     };
 
     let nodeCounter = 0;
@@ -233,20 +241,23 @@ function initializePlumb() {
             // 使节点可拖动
             instance.draggable(node, {
                 drag: function(event) {
+                    // 重新计算连接点位置
                     instance.revalidate(event.el);
+                    // 重绘所有连接
+                    instance.repaintEverything();
+                },
+                stop: function(event) {
+                    // 拖动结束后确保连接点位置正确
+                    setTimeout(() => {
+                        instance.revalidate(event.el);
+                        instance.repaintEverything();
+                    }, 50);
                 }
             });
 
             // 添加连接点
-            instance.addEndpoint(node, {
-                anchor: 'Right',
-                uuid: id + '-right'
-            }, sourceEndpoint);
-
-            instance.addEndpoint(node, {
-                anchor: 'Left',
-                uuid: id + '-left'
-            }, targetEndpoint);
+            instance.addEndpoint(node, sourceEndpoint);
+            instance.addEndpoint(node, targetEndpoint);
 
             // 添加双击编辑功能
             node.addEventListener('dblclick', function() {
