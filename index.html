@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频信号流程图</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="lib/jsplumb.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="#" class="active">Video</a>
+            <a href="#">Color</a>
+            <a href="#">Audio</a>
+            <a href="#">Video Replay</a>
+            <a href="#">Audio Replay</a>
+        </nav>
+        <nav class="right-nav">
+            <a href="#">Video</a>
+            <a href="#">Audio</a>
+            <a href="#">PTP</a>
+            <a href="#">List</a>
+            <a href="#">Files</a>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="toolbar">
+            <button id="addNode" data-tooltip="添加节点">+</button>
+            <button id="zoomIn" data-tooltip="放大">+</button>
+            <button id="zoomOut" data-tooltip="缩小">-</button>
+            <button id="fitView" data-tooltip="全局视图">⚡</button>
+            <button id="lock" data-tooltip="锁定">🔒</button>
+            <button id="move" data-tooltip="移动">↔</button>
+            <button id="text" data-tooltip="添加文本">T</button>
+        </div>
+        <div class="graph-container" id="graphContainer">
+            <!-- 节点将通过JavaScript动态添加 -->
+        </div>
+        <div class="right-panel">
+            <button class="config-btn" id="saveConfig">Save Configuration</button>
+            <button class="config-btn" id="loadConfig">Load Configuration</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

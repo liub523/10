@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #161b22;
+    padding: 12px 24px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+nav a {
+    color: #8b949e;
+    text-decoration: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    color: #c9d1d9;
+    background-color: #21262d;
+}
+
+nav a.active {
+    background-color: #1f6feb;
+    color: #ffffff;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 52px);
+}
+
+.toolbar {
+    width: 48px;
+    background-color: #161b22;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+    border-right: 1px solid #30363d;
+}
+
+.toolbar button {
+    width: 32px;
+    height: 32px;
+    margin: 4px 0;
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.toolbar button:hover {
+    background-color: #2b3139;
+    border-color: #8b949e;
+    transform: translateY(-1px);
+}
+
+.toolbar button:active {
+    transform: translateY(0);
+}
+
+.graph-container {
+    flex: 1;
+    background-color: #0d1117;
+    background-image: radial-gradient(#30363d 1px, transparent 1px);
+    background-size: 24px 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
+.graph-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-origin: 0 0;
+    transition: transform 0.1s ease-out;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.right-panel {
+    width: 240px;
+    padding: 20px;
+    background-color: #161b22;
+    border-left: 1px solid #30363d;
+}
+
+.config-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    background-color: #238636;
+    border: 1px solid rgba(240,246,252,0.1);
+    color: #ffffff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.config-btn:hover {
+    background-color: #2ea043;
+    border-color: rgba(240,246,252,0.2);
+    transform: translateY(-1px);
+}
+
+.config-btn:active {
+    transform: translateY(0);
+}
+
+.node {
+    min-width: 140px;
+    text-align: center;
+    background-color: #1f2428;
+    border: 2px solid #30363d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    z-index: 10;
+    color: #c9d1d9;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.node:hover {
+    border-color: #1f6feb;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.node.selected {
+    border-color: #1f6feb;
+    box-shadow: 0 0 0 3px rgba(31,111,235,0.3);
+}
+
+.jtk-connector {
+    z-index: 9;
+    opacity: 0.8;
+}
+
+.jtk-endpoint {
+    z-index: 11;
+    transform: scale(0.8);
+    transition: transform 0.2s ease;
+}
+
+.jtk-endpoint:hover {
+    transform: scale(1);
+}
+
+.connection-dot {
+    display: none;
+}
+
+.node::after {
+    display: none;
+}
+
+.graph-container.grabbing {
+    cursor: grabbing !important;
+}
+
+.graph-container.grab {
+    cursor: grab;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #161b22;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f4751;
+}
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background-color: #2b3139;
+    color: #c9d1d9;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+} 
